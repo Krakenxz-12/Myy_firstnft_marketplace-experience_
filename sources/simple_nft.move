@@ -223,6 +223,11 @@ module nft::nft_marketplace {
             seller: _,
         } = listing;
         
+        let nft_id = object::(&nft);
+
+        // Return NFT to the seller
+        transfer::public_transfer(nft, seller);
+
         sui::event::emit(DelistNFTEvent {
             listing_id: object::uid_to_inner(&listing_id),
             nft_id,
@@ -354,6 +359,11 @@ module nft::nft_marketplace {
             seller: _,
         } = listing;
         
+        let nft_id = object::id(&nft);
+
+        // Return NFT to the seller
+        transfer::public_transfer(nft, seller);
+
         sui::event::emit(DelistNFTEvent {
             listing_id: object::uid_to_inner(&listing_id),
             nft_id,
